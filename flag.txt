@@ -1,0 +1,19 @@
+var request=new XMLHttpRequest();
+
+request.open("GET","https://restcountries.com/v3.1/all");
+
+request.send();
+
+request.onload=function(){
+var data=JSON.parse(request.response);
+printData(data);
+}
+
+function printData(data) {
+    if(data.length > 0) {
+       for(let i= 0; i < data.length; i++) {
+           const { flags = {} }  = data[i];
+           console.log(flags.svg);
+       }
+    }
+}
